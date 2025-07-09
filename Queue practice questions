@@ -1,0 +1,118 @@
+# Initial queue
+queue = ['Network', 'Protocol', 'Security', 'AI', 'Data']
+original_queue = queue.copy()  # Save for Question 8
+
+print("👉 Original Queue:", queue)
+
+# Question 1: Two dequeues
+dequeued_elements_q1 = [queue.pop(0), queue.pop(0)]
+print("\n--- Question 1 ---")
+print("Dequeued Elements:", dequeued_elements_q1)
+print("Queue after 2 dequeues:", queue)
+
+# Question 2: Enqueue "Virtualization"
+queue.append("Virtualization")
+print("\n--- Question 2 ---")
+print("Queue after enqueuing 'Virtualization':", queue)
+
+# Question 3: Dequeue once
+dequeued_q3 = queue.pop(0)
+print("\n--- Question 3 ---")
+print("Dequeued Element:", dequeued_q3)
+print("Queue now:", queue)
+
+# Question 4: Enqueue "Cloud"
+queue.append("Cloud")
+print("\n--- Question 4 ---")
+print("Queue after enqueuing 'Cloud':", queue)
+
+# Question 5: Check for "Protocol"
+protocol_present = "Protocol" in queue
+print("\n--- Question 5 ---")
+print("Is 'Protocol' present?:", "Yes" if protocol_present else "No")
+
+# Question 6: Enqueue "Machine Learning"
+queue.append("Machine Learning")
+print("\n--- Question 6 ---")
+print("Queue after enqueuing 'Machine Learning':", queue)
+
+# Question 7: Final dequeue
+dequeued_q7 = queue.pop(0)
+print("\n--- Question 7 ---")
+print("Dequeued Element:", dequeued_q7)
+print("Final Queue:", queue)
+
+# Question 8: Concept Check
+# Original queue: ['Network', 'Protocol', 'Security', 'AI', 'Data']
+# Position 3 = 'AI' (0-based index 2), Position 4 = 'Data' (index 3)
+
+# Find when 'AI' and 'Data' were dequeued
+steps = {
+    'AI': None,
+    'Data': None
+}
+
+# Simulate steps from the original queue
+q = original_queue.copy()
+step = 0
+history = []
+
+def record_dequeue(q, steps, step):
+    if q:
+        item = q.pop(0)
+        if item in steps:
+            steps[item] = step
+        return item
+    return None
+
+# Step 1: dequeue 1
+record_dequeue(q, steps, 1)
+# Step 1: dequeue 2
+record_dequeue(q, steps, 1)
+# Step 2: enqueue "Virtualization"
+q.append("Virtualization")
+# Step 3: dequeue
+record_dequeue(q, steps, 3)
+# Step 4: enqueue "Cloud"
+q.append("Cloud")
+# Step 6: enqueue "Machine Learning"
+q.append("Machine Learning")
+# Step 7: dequeue
+record_dequeue(q, steps, 7)
+
+print("\n--- Question 8 (Concept Check) ---")
+print(f"Element at position 3 ('AI') was dequeued in step: {steps['AI']}")
+print(f"Element at position 4 ('Data') was dequeued in step: {steps['Data'] if steps['Data'] else 'Not dequeued'}")
+🧾 Sample Output:
+pgsql
+Copy
+Edit
+Original Queue: ['Network', 'Protocol', 'Security', 'AI', 'Data']
+
+--- Question 1 ---
+Dequeued Elements: ['Network', 'Protocol']
+Queue after 2 dequeues: ['Security', 'AI', 'Data']
+
+--- Question 2 ---
+Queue after enqueuing 'Virtualization': ['Security', 'AI', 'Data', 'Virtualization']
+
+--- Question 3 ---
+Dequeued Element: Security
+Queue now: ['AI', 'Data', 'Virtualization']
+
+--- Question 4 ---
+Queue after enqueuing 'Cloud': ['AI', 'Data', 'Virtualization', 'Cloud']
+
+--- Question 5 ---
+Is 'Protocol' present?: No
+
+--- Question 6 ---
+Queue after enqueuing 'Machine Learning': ['AI', 'Data', 'Virtualization', 'Cloud', 'Machine Learning']
+
+--- Question 7 ---
+Dequeued Element: AI
+Final Queue: ['Data', 'Virtualization', 'Cloud', 'Machine Learning']
+
+--- Question 8 (Concept Check) ---
+Element at position 3 ('AI') was dequeued in step: 7
+Element at position 4 ('Data') was dequeued in step: Not dequeued
